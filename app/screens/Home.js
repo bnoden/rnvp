@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StatusBar, View } from 'react-native';
 
 import { Container } from '../components/Container';
-import { Logo } from '../components/Logo';
+import { VideoPlayer } from '../components/VideoPlayer';
 import { InputWithButton } from '../components/TextInput';
 
 const TEMP_BASE_C = 'USD';
@@ -26,20 +26,7 @@ class Home extends Component {
     return (
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />
-        <Logo />
-        <InputWithButton
-          buttonText={TEMP_BASE_C}
-          onPress={this.handlePressBaseC}
-          defaultValue={TEMP_BASE_P}
-          keyboardType="numeric"
-          onChangeText={this.handleTextChange}
-        />
-        <InputWithButton
-          buttonText={TEMP_QUOTE_C}
-          onPress={this.handlePressQuoteC}
-          editable={false}
-          value={TEMP_QUOTE_P}
-        />
+        <VideoPlayer />
       </Container>
     );
   }
