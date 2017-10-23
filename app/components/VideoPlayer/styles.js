@@ -13,7 +13,7 @@ export default EStyleSheet.create({
     justifyContent: 'center',
     width: logoWidth,
     height: logoHeight,
-    opacity: 0.15
+    opacity: 1.0
   },
   text: {
     color: '$blueGreenLight',
