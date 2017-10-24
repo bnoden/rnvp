@@ -20,7 +20,6 @@ class VideoPlayer extends Component {
   }
 
   handleOnLoad = () => {
-    this.changeOrientation;
     this.setState({ mediaState: 'LOADED', playButtonText: 'LOADED' });
     setTimeout(() => {
       this.setState({ mediaState: 'PAUSED', playButtonText: 'PLAY' });
