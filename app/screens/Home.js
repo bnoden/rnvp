@@ -5,6 +5,9 @@ import { Container } from '../components/Container';
 import { VideoPlayer } from '../components/VideoPlayer';
 
 class Home extends Component {
+  componentWillMount() {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+  }
   render() {
     return (
       <Container>
