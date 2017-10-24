@@ -4,7 +4,8 @@ import Home from './screens/Home';
 
 EStyleSheet.build({
   $blueGreen: '#10C880',
-  $blueGreenLight: '#E3FFF4'
+  $blueGreenLight: '#E3FFF4',
+  $yellowLight: '#FFFFE3'
 })
 
 export default () => <Home />;

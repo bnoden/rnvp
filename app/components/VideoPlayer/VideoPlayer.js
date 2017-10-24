@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { Video } from 'expo';
 
@@ -13,44 +14,48 @@ class VideoPlayer extends Component {
     super(props);
 
     this.state = {
-      mediaState: ''
+      mediaState: 'LOADING',
+      playButtonText: 'LOADING'
     };
   }
 
-  handleOnPress = () => {
-    _onPlaybackStatusUpdate = playbackStatus => {
-      playbackStatus = this.vid.playbackStatus;
-      if (this.vid.playbackStatus.isPlaying) {
-        this.vid.pauseAsync();
-        this.setState({
-          mediaState: 'Paused'
-        });
-      } else {
-        this.vid.playAsync();
-        this.setState({
-          mediaState: 'Playing'
-        });
-      }
-    };
-    console.log('this.state.mediaState: ', this.state.mediaState);
-    console.log('playbackStatus', playbackStatus);
+  handleOnLoad = () => {
+    this.setState({ mediaState: 'LOADED', playButtonText: 'LOADED' });
+    setTimeout(() => {
+      this.setState({ mediaState: 'PAUSED', playButtonText: 'PLAY' });
+    }, 2000);
+  };
+
+  handlePressPlay = () => {
+    if (this.state.mediaState === 'PAUSED') {
+      this.vid.playAsync();
+      this.setState({ mediaState: 'PLAYING', playButtonText: 'PAUSE' });
+    } else {
+      this.vid.pauseAsync();
+      this.setState({ mediaState: 'PAUSED', playButtonText: 'PLAY' });
+    }
   };
 
   render() {
     return (
       <View>
+        <Text style={styles.fileName}>
+          {shortFileName(demoSrc, 1)}
+        </Text>
         <Video
+          onLoad={this.handleOnLoad}
           ref={r => (this.vid = r)}
-          shouldPlay
+          shouldPlay={false}
           source={{ uri: demoSrc }}
           rate={1.0}
           volume={1.0}
           muted={false}
-          resizeMode="contain"
-          style={styles.containerVideo}
+          style={styles.video}
         />
-        <TouchableOpacity onPress={this.handleOnPress}>
-          <Text style={styles.text}>PAUSE PLAY</Text>
+        <TouchableOpacity onPress={this.handlePressPlay}>
+          <Text style={styles.text}>
+            {this.state.playButtonText}
+          </Text>
         </TouchableOpacity>
       </View>
     );

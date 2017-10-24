@@ -8,7 +8,7 @@ export default EStyleSheet.create({
   container: {
     alignItems: 'center'
   },
-  containerVideo: {
+  video: {
     alignItems: 'center',
     justifyContent: 'center',
     width: logoWidth,
@@ -18,6 +18,12 @@ export default EStyleSheet.create({
   text: {
     color: '$blueGreenLight',
     fontWeight: '600',
-    fontSize: 18
+    fontSize: 24
+  },
+  fileName: {
+    color: '$yellowLight',
+    fontWeight: '400',
+    fontSize: 18,
+    textAlign: 'center'
   }
 });
