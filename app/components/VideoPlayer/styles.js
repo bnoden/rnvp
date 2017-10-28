@@ -9,6 +9,10 @@ export default EStyleSheet.create({
     fontWeight: '600',
     fontSize: 24
   },
+  button: {
+    width: 48,
+    height: 36
+  },
   fileName: {
     color: '$yellowLight',
     fontWeight: '400',

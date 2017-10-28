@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 import { Video } from 'expo';
 
 import styles from './styles';
 import { demoVideo, demoToken, shortFileName } from '../access';
+
+const btnPlay = require('./btn-play.png');
+const btnPause = require('./btn-pause.png');
 
 export const demoSrc = 'https://' + demoVideo + demoToken;
 
@@ -15,26 +18,25 @@ class VideoPlayer extends Component {
 
     this.state = {
       mediaState: 'LOADING',
-      playButtonText: 'LOADING'
+      playButtonImg: btnPlay
     };
   }
 
   handleOnLoad = () => {
-    this.setState({ mediaState: 'LOADED', playButtonText: 'LOADED' });
+    this.setState({ mediaState: 'LOADED', playButtonImg: btnPause });
     setTimeout(() => {
-      this.setState({ mediaState: 'PAUSED', playButtonText: 'PLAY' });
+      this.setState({ mediaState: 'PAUSED', playButtonImg: btnPlay });
     }, 2000);
   };
 
   handlePressPlay = () => {
-    console.log('window width', this.vid.width);
-    console.log('window height', this.vid.height);
+    console.log(this.state.playButtonImg);
     if (this.state.mediaState === 'PAUSED') {
       this.vid.playAsync();
-      this.setState({ mediaState: 'PLAYING', playButtonText: 'PAUSE' });
+      this.setState({ mediaState: 'PLAYING', playButtonImg: btnPause });
     } else {
       this.vid.pauseAsync();
-      this.setState({ mediaState: 'PAUSED', playButtonText: 'PLAY' });
+      this.setState({ mediaState: 'PAUSED', playButtonImg: btnPlay });
     }
   };
 
@@ -62,9 +64,7 @@ class VideoPlayer extends Component {
           }}
         />
         <TouchableOpacity onPress={this.handlePressPlay}>
-          <Text style={styles.text}>
-            {this.state.playButtonText}
-          </Text>
+          <Image style={styles.button} source={this.state.playButtonImg} />
         </TouchableOpacity>
       </View>
     );
