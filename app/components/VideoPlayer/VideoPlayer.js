@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 import { Video } from 'expo';
+
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+const ffmpeg = require('fluent-ffmpeg');
+ffmpeg.setFfmpegPath(ffmpegPath);
 
 import styles from './styles';
 import { demoVideo, demoToken, shortFileName } from '../access';
@@ -11,6 +15,9 @@ const btnPlay = require('./btn-play.png');
 const btnPause = require('./btn-pause.png');
 
 export const demoSrc = 'https://' + demoVideo + demoToken;
+
+const demoFM = ffmpeg(demoSrc);
+// const demoMetadata = demoFM.Metadata;
 
 class VideoPlayer extends Component {
   constructor(props) {
@@ -27,10 +34,12 @@ class VideoPlayer extends Component {
     setTimeout(() => {
       this.setState({ mediaState: 'PAUSED', playButtonImg: btnPlay });
     }, 2000);
+    ffmpeg.ffprobe(demoSrc, (err, metadata) => {
+      console.log(metadata)
+    })
   };
 
-  handlePressPlay = () => {
-    console.log(this.state.playButtonImg);
+  pressPlay = () => {
     if (this.state.mediaState === 'PAUSED') {
       this.vid.playAsync();
       this.setState({ mediaState: 'PLAYING', playButtonImg: btnPause });
@@ -63,7 +72,7 @@ class VideoPlayer extends Component {
             opacity: 1
           }}
         />
-        <TouchableOpacity onPress={this.handlePressPlay}>
+        <TouchableOpacity onPress={this.pressPlay}>
           <Image style={styles.button} source={this.state.playButtonImg} />
         </TouchableOpacity>
       </View>
@@ -72,6 +81,6 @@ class VideoPlayer extends Component {
 }
 
 const videoDisplayWidth = Dimensions.get('window').width;
-const videoDisplayHeight = videoDisplayWidth * 0.67;
+const videoDisplayHeight = videoDisplayWidth*0.6;
 
 export default VideoPlayer;

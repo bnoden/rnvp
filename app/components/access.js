@@ -1,8 +1,8 @@
 // There's nothing here really worth hiding for now.
 export const demoVideo =
-  'firebasestorage.googleapis.com/v0/b/bn-wvid.appspot.com/o/bbhd1a.mp4';
+  'firebasestorage.googleapis.com/v0/b/bn-wvid.appspot.com/o/TheBunnyMovie.mp4';
 export const demoToken =
-  '?alt=media&token=4aa8b374-ecad-43bb-a423-d865ac55f835';
+  '?alt=media&token=ac6c7062-076f-49eb-a747-acd232767daa';
 
 // Return filename without path/token
 // If no token, omit arg or use false/any falsy value, else use token variable or any truthy value
