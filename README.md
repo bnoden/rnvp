@@ -1,6 +1,10 @@
-React Native Video Project
+React Native Video Project  
+
+Still in the early stages.  
+
+View snack version at https://snack.expo.io/H1byCAwAW
 
 todo:  
-Include video title from metadata, rather than just the file name.  
-Deal with Android compatibility issues.  
-Much, much more.  
+Metadata, Editing, Conversion  
+And more?
+  

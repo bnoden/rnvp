@@ -26,9 +26,6 @@ class VideoPlayer extends Component {
     setTimeout(() => {
       this.setState({ mediaState: 'PAUSED', playButtonImg: btnPlay });
     }, 2000);
-    ffmpeg.ffprobe(demoSrc, (err, metadata) => {
-      console.log(metadata)
-    })
   };
 
   pressPlay = () => {

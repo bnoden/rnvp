@@ -5,7 +5,7 @@ export default EStyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    color: '$blueGreenLight',
+    color: '$easyBlue',
     fontWeight: '600',
     fontSize: 24
   },
